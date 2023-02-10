@@ -1,0 +1,25 @@
+{
+  "name": "karacho-vscode",
+  "displayName": "karacho-vscode",
+  "description": "Language support for the Karacho Template engine",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "karacho",
+      "aliases": ["Karacho", "karacho"],
+      "extensions": [".kch", ".karacho", ".karacho.html", ".kohtml", ".kohtm"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "karacho",
+      "scopeName": "text.html.karacho",
+      "path": "./syntaxes/karacho.tmLanguage.json"
+    }]
+  }
+}

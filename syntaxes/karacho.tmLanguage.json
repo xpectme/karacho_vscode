@@ -1,0 +1,337 @@
+{
+  "scopeName": "text.html.karacho",
+  "fileTypes": [
+    "karacho",
+    "karacho.html",
+    "kch",
+    "kohtml",
+    "kohtm"
+  ],
+  "name": "Karacho",
+  "patterns": [
+		{
+			"include": "#block_comments"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#block_helper"
+		},
+		{
+			"include": "#end_block"
+		},
+		{
+			"include": "#else_token"
+		},
+		{
+			"include": "#block_partial"
+		},
+		{
+			"include": "text.html.basic"
+		}
+	],
+  "repository": {
+    "end_block": {
+      "begin": "(\\{\\{)(/)([a-zA-Z0-9/_\\.-]+)\\s*",
+      "end": "(\\}\\})",
+      "name": "meta.function.block.end.karacho",
+      "endCaptures": {
+        "1": {
+          "name": "support.constant.karacho"
+        }
+      },
+      "beginCaptures": {
+        "1": {
+          "name": "support.constant.karacho"
+        },
+        "2": {
+          "name": "support.constant.karacho keyword.control"
+        },
+        "3": {
+          "name": "support.constant.karacho keyword.control"
+        }
+      },
+      "patterns": []
+    },
+    "comments": {
+      "patterns": [
+        {
+          "patterns": [
+            {
+              "name": "keyword.annotation.karacho",
+              "match": "@\\w*"
+            },
+            {
+              "include": "#comments"
+            }
+          ],
+          "begin": "\\{\\{!",
+          "end": "\\}\\}",
+          "name": "comment.block.karacho"
+        },
+        {
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.html"
+            }
+          },
+          "begin": "<!--",
+          "end": "-{2,3}\\s*>",
+          "name": "comment.block.html",
+          "patterns": [
+            {
+              "name": "invalid.illegal.bad-comments-or-CDATA.html",
+              "match": "--"
+            }
+          ]
+        }
+      ]
+    },
+    "block_comments": {
+      "patterns": [
+        {
+          "patterns": [
+            {
+              "name": "keyword.annotation.karacho",
+              "match": "@\\w*"
+            },
+            {
+              "include": "#comments"
+            }
+          ],
+          "begin": "\\{\\{!--",
+          "end": "--\\}\\}",
+          "name": "comment.block.karacho"
+        },
+        {
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.html"
+            }
+          },
+          "begin": "<!--",
+          "end": "-{2,3}\\s*>",
+          "name": "comment.block.html",
+          "patterns": [
+            {
+              "name": "invalid.illegal.bad-comments-or-CDATA.html",
+              "match": "--"
+            }
+          ]
+        }
+      ]
+    },
+    "block_helper": {
+      "begin": "(\\{\\{)(\\#)\\s*([-a-zA-Z0-9$_\\./]+)\\s*",
+      "end": "(\\}\\})",
+      "name": "meta.function.block.start.karacho",
+      "beginCaptures": {
+        "1": {
+          "name": "support.constant.karacho"
+        },
+        "2": {
+          "name": "support.constant.karacho keyword.control"
+        },
+        "3": {
+          "name": "support.constant.karacho keyword.control"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "support.constant.karacho"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#karacho_attribute"
+        }
+      ]
+    },
+    "block_partial": {
+      "begin": "(\\{\\{)(\\>)\\s*([-a-zA-Z0-9$_\\./]+)\\s*",
+      "end": "(\\}\\})",
+      "name": "meta.function.inline.other.karacho",
+      "beginCaptures": {
+        "1": {
+          "name": "support.constant.karacho"
+        },
+        "2": {
+          "name": "support.constant.karacho keyword.control"
+        },
+        "3": {
+          "name": "support.constant.karacho keyword.control"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "support.constant.karacho"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#karacho_attribute"
+        }
+      ]
+    },
+    "else_token": {
+      "begin": "(\\{\\{)(else)",
+      "end": "(\\}\\})",
+      "name": "meta.function.inline.other.karacho",
+      "beginCaptures": {
+        "1": {
+          "name": "support.constant.karacho"
+        },
+        "2": {
+          "name": "support.constant.karacho keyword.control"
+        },
+        "3": {
+          "name": "support.constant.karacho keyword.control"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "support.constant.karacho"
+        }
+      }
+    },
+    "string-single-quoted": {
+      "begin": "'",
+      "end": "'",
+      "name": "string.quoted.single.karacho",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.html"
+        }
+      },
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.html"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#escaped-single-quote"
+        },
+        {
+          "include": "#block_comments"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#block_helper"
+        },
+        {
+          "include": "#else_token"
+        },
+        {
+          "include": "#end_block"
+        },
+        {
+          "include": "#block_partial"
+        }
+      ]
+    },
+    "string-double-quoted": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.karacho",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.html"
+        }
+      },
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.html"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#escaped-double-quote"
+        },
+        {
+          "include": "#block_comments"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#block_helper"
+        },
+        {
+          "include": "#else_token"
+        },
+        {
+          "include": "#end_block"
+        },
+        {
+          "include": "#block_partial"
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {
+          "include": "#string-single-quoted"
+        },
+        {
+          "include": "#string-double-quoted"
+        }
+      ]
+    },
+    "escaped-single-quote": {
+      "name": "constant.character.escape.js",
+      "match": "\\\\'"
+    },
+    "escaped-double-quote": {
+      "name": "constant.character.escape.js",
+      "match": "\\\\\""
+    },
+    "karacho_attribute_name": {
+      "begin": "\\b([-a-zA-Z0-9_\\.]+)\\b\\s*(=)",
+      "captures": {
+        "1": {
+          "name": "variable.parameter.karacho"
+        },
+        "2": {
+          "name": "support.constant.karacho keyword.control"
+        }
+      },
+      "end": "(?='|\"|)",
+      "name": "entity.other.attribute-name.karacho"
+    },
+    "karacho_attribute_value": {
+      "begin": "([-a-zA-Z0-9_\\./]+)\\b",
+      "captures": {
+        "1": {
+          "name": "variable.parameter.karacho"
+        }
+      },
+      "end": "('|\"|)",
+      "name": "entity.other.attribute-value.karacho",
+      "patterns": [
+        {
+          "include": "#string"
+        }
+      ]
+    },
+    "karacho_attribute": {
+      "patterns": [
+        {
+          "include": "#karacho_attribute_name"
+        },
+        {
+          "include": "#karacho_attribute_value"
+        }
+      ]
+    }
+  }
+}
