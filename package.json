@@ -2,7 +2,7 @@
   "name": "karacho-vscode",
   "displayName": "karacho-vscode",
   "description": "Language support for the Karacho Template engine",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -18,6 +18,10 @@
     "languages": [
       {
         "id": "karacho",
+        "icon": {
+          "dark": "./icons/karacho.png",
+          "light": "./icons/karacho.png"
+        },
         "aliases": [
           "Karacho",
           "karacho"
