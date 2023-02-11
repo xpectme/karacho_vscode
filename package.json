@@ -6,20 +6,36 @@
   "engines": {
     "vscode": "^1.75.0"
   },
+  "main": "main.js",
+  "activationEvents": [],
+  "publisher": "XP.LIVE",
   "categories": [
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "karacho",
-      "aliases": ["Karacho", "karacho"],
-      "extensions": [".kch", ".karacho", ".karacho.html", ".kohtml", ".kohtm"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "karacho",
-      "scopeName": "text.html.karacho",
-      "path": "./syntaxes/karacho.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "karacho",
+        "aliases": [
+          "Karacho",
+          "karacho"
+        ],
+        "extensions": [
+          ".kch",
+          ".karacho",
+          ".karacho.html",
+          ".kohtml",
+          ".kohtm"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "karacho",
+        "scopeName": "text.html.karacho",
+        "path": "./syntaxes/karacho.tmLanguage.json"
+      }
+    ]
   }
 }
